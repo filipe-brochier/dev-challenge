@@ -1,16 +1,24 @@
+import { useContext, useState } from 'react';
+import ResultContext from '../../context/ResultContext';
 import searchIcon from '../../layout/searchIcon.png';
 import './styles.css';
 
 function Search() {
+  const [localKeyword, setLocalKeyword] = useState();
+  const { setKeyword } = useContext(ResultContext);
   return (
-    <section class="search-container">
+    <section className="search-container">
       <input 
         type="text" 
-        class="search-input"
+        className="search-input"
         placeholder='Faça sua busca aqui'
+        onChange={ (e) => setLocalKeyword(e.target.value)}
       />
-      <button type="button" class="search-button">
-        <img src={searchIcon} alt='search-icon' class="search-logo"/>
+      <button type="button"
+        className="search-button"
+        onClick={ () => setKeyword(localKeyword)}
+      >
+        <img src={searchIcon} alt='search-icon' className="search-logo"/>
       </button>
     </section>
   );
